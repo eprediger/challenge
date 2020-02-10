@@ -2,7 +2,7 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "backend for .csv file processing",
-	"main": "dist/index.js",
+	"main": "dist/server.js",
 	"scripts": {
 		"prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
 		"build": "tsc",
@@ -22,7 +22,9 @@
 	"homepage": "https://github.com/eprediger/challenge#readme",
 	"dependencies": {
 		"@types/multer": "^1.4.0",
+		"core-util-is": "^1.0.2",
 		"express": "^4.17.1",
+		"fast-csv": "^4.0.2",
 		"multer": "^1.4.2"
 	},
 	"devDependencies": {
