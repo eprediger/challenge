@@ -26,15 +26,15 @@ class Member {
 	}
 
 	public isFan(queryTeam: string): boolean {
-		return this.team == queryTeam;
+		return this.team === queryTeam;
 	}
 
 	maritalStatusIs(maritalStatus: string) {
-		return this.maritalStatus == maritalStatus;
+		return this.maritalStatus === maritalStatus;
 	}
 
 	hasDegree(education: string) {
-		return this.education == education;
+		return this.education === education;
 	}
 };
 
