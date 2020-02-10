@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "59b348c1-740e-4930-a640-2ca303f7d9b7",
+		"name": "challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/upload-csv",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/emiliano/challenge/socios.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/upload-csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upload-csv"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/members/totalize",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/members/totalize",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"members",
+						"totalize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/members/averageAge/:team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/members/averageAge/Racing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"members",
+						"averageAge",
+						"Racing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/members/list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/members/list?maritalStatus=Casado&education=Universitario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"members",
+						"list"
+					],
+					"query": [
+						{
+							"key": "total",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "maritalStatus",
+							"value": "Casado"
+						},
+						{
+							"key": "education",
+							"value": "Universitario"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/members/commonNames/:team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/members/commonNames/River",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"members",
+						"commonNames",
+						"River"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/members/summarize",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/members/summarize",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"members",
+						"summarize"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
