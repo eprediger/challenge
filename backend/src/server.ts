@@ -28,7 +28,7 @@ app.post('/upload-csv', upload.single('file'), (req, res) => {
 		})
 		.on('end', (rowCount: number) => {
 			res.status(200);
-			res.send(`Parsed ${rowCount} rows`);;
+			res.send({ rows: rowCount });;
 		});
 });
 
@@ -69,7 +69,7 @@ Universitarios, ordenadas de menor a mayor según su edad. Por
 cada persona, mostrar: nombre, edad y equipo. */
 app.get("/members/list", (req, res) => {
 	const total: number = req.query.total ? Number(req.query.total) : 100;
-	const order: string = req.query.order ? req.query.order : 'age:ASC';
+	// const order: string = req.query.order ? req.query.order : 'age:ASC';
 	const maritalStatus: string = req.query.maritalStatus;
 	const education: string = req.query.education;
 
@@ -116,7 +116,7 @@ app.get("/members/commonNames/:team", (req, res) => {
 	for (const name in names) {
 		if (names.hasOwnProperty(name)) {
 			const value = names[name];
-			response.push({name, count: value});
+			response.push({ name, count: value });
 		}
 	}
 
