@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MembersService } from 'src/app/services/members.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
 	formImport: FormGroup;
 	file: File = null;
 
-	constructor(private members: MembersService) {
+	constructor(private members: MembersService, private router: Router) {
 		this.formImport = new FormGroup({
 			importFile: new FormControl('', Validators.required)
 		});
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
 
 		this.members.upload(this.file).subscribe(
 			(data: any) => {
-				console.log(data);
+				this.router.navigate(['/main'])
 			},
 			(error: any) => {
 				console.error(error);
