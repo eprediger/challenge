@@ -31,7 +31,8 @@ app.post('/upload-csv', upload.single('file'), (req, res) => {
 		})
 		.on('end', (rowCount: number) => {
 			fs.unlink(`${filePath}`, () => {});
-			fs.rmdir(`${DEST_FOLDER}`, () => {});
+			// TODO: refactor borrado directorio cuando termina el svr
+			// fs.rmdir(`${DEST_FOLDER}`, () => {});
 			res.status(200);
 			res.send({ rows: rowCount });
 		});
