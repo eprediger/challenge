@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs/internal/Observable';
 
-import { map } from "rxjs/operators";
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -27,9 +26,6 @@ export class MembersService {
 		};
 
 		return this.http.post(url, formData, httpOptions);
-			/* .map(res => res.json())
-			.catch(error => Observable.throw(error)); */
-
 	}
 
 	// getTotalMembers

@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<mat-form-field>
+	<mat-label>Equipo Favorito</mat-label>
+	<mat-select>
+		<mat-option *ngFor="let team of teams" [value]="team" (click)="getTeamMembersAverageAge(team)">
+			{{team}}
+		</mat-option>
+	</mat-select>
+</mat-form-field>
+
+<p>Edad Promedio: {{ averageAge | number:'.2-2':'es-AR'}} años</p>

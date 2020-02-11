@@ -13,11 +13,12 @@ const DELIMITER: string = ";";
 const upload = multer({ dest: DEST_FOLDER });
 const app = express();
 
-const members: Member[] = [];
+let members: Member[] = [];
 
 // Subida archivo
 app.post('/upload-csv', upload.single('file'), (req, res) => {
 	const filePath = req.file.path;
+	members = [];
 
 	fs.createReadStream(filePath, 'utf8')
 		.pipe(csv.parse({ headers: HEADERS, delimiter: DELIMITER }))
