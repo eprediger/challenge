@@ -6,29 +6,34 @@ import * as csv from 'fast-csv';
 import Member from "./model/Member";
 
 const LISTEN_PORT: number = 8080; // default port to listen
+const DEST_FOLDER = './tmp';
 const HEADERS: string[] = ['name', 'age', 'team', 'maritalStatus', 'education'];
 const DELIMITER: string = ";";
 
-const upload = multer({ dest: 'tmp/csv/' });
+const upload = multer({ dest: DEST_FOLDER });
 const app = express();
 
 const members: Member[] = [];
 
 // Subida archivo
 app.post('/upload-csv', upload.single('file'), (req, res) => {
-	fs.createReadStream(req.file.path, 'utf8')
+	const filePath = req.file.path;
+
+	fs.createReadStream(filePath, 'utf8')
 		.pipe(csv.parse({ headers: HEADERS, delimiter: DELIMITER }))
-		.on('error', (error: any) => {
-			res.status(500);
-			res.send(error);
-		})
 		.on('data', (row: any) => {
 			const newMember: Member = new Member(row.name, row.age, row.team, row.maritalStatus, row.education);
 			members.push(newMember);
 		})
+		.on('error', (error: any) => {
+			res.status(500);
+			res.send(error);
+		})
 		.on('end', (rowCount: number) => {
+			fs.unlink(`${filePath}`, () => {});
+			fs.rmdir(`${DEST_FOLDER}`, () => {});
 			res.status(200);
-			res.send({ rows: rowCount });;
+			res.send({ rows: rowCount });
 		});
 });
 
