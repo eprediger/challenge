@@ -1,6 +1,30 @@
 <app-navbar></app-navbar>
 
 <div class="mat-elevation-z8">
+	<div class="row mt-2">
+		<div class="offset-3 col-3 my-auto">
+			<mat-form-field>
+				<mat-label>Estado Civil</mat-label>
+				<mat-select [value]="status">
+					<mat-option *ngFor="let status of maritalStatus" [(value)]="status" (click)="getMembersList(status, education)">
+						{{status}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<div class="col-3">
+			<mat-form-field>
+				<mat-label>Nivel de Estudios</mat-label>
+				<mat-select [value]="education">
+					<mat-option *ngFor="let education of educations" [(value)]="education"
+						(click)="getMembersList(status, education)">
+						{{education}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+	</div>
+
 	<table mat-table [dataSource]="dataSource">
 		<!-- Nombre -->
 		<ng-container matColumnDef="name">

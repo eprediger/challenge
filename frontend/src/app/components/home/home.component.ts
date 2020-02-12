@@ -21,13 +21,13 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit() { }
 
-	public async upload(files: FileList) {
+	public upload(files: FileList) {
 		this.labelImport.nativeElement.innerText = Array.from(files)
 			.map(f => f.name)
 			.join(', ');
 		this.file = files[0];
 
-		await this.members.upload(this.file).subscribe(
+		this.members.upload(this.file).subscribe(
 			(data: any) => {
 				this.router.navigate(['/main'])
 			},

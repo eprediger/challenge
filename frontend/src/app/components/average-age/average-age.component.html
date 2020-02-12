@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid text-center" style="background-color: gray;">
-	<div class="row">
-		<div class="offset-3 col-3">
+	<div class="row mt-2">
+		<div class="offset-3 col-3 my-auto">
 			<mat-form-field>
 				<mat-label>Equipo Favorito</mat-label>
 				<mat-select [value]="defaultTeam">
@@ -12,9 +12,10 @@
 				</mat-select>
 			</mat-form-field>
 		</div>
-		<div class="col-3 my-auto">
+		<div class="col-3 my-auto" style="color: #FFF">
 			<p *ngIf="averageAge">Edad Promedio: {{ averageAge | number:'.2-2':'es-AR'}} años</p>
 		</div>
 	</div>
 </div>
+
 <app-spinner *ngIf="loading"></app-spinner>

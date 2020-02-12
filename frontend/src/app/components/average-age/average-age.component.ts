@@ -29,7 +29,7 @@ export class AverageAgeComponent implements OnInit {
 	}
 
 	public getTeamMembersAverageAge(team: string) {
-		this.loading = false;
+		this.loading = true;
 		this.members.getTeamMembersAverageAge(team).subscribe(
 			(data) => {
 				this.averageAge = data.averageAge;

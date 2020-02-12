@@ -4,12 +4,20 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { MembersService } from 'src/app/services/members.service';
 @Component({
-  selector: 'app-members-list',
-  templateUrl: './members-list.component.html',
-  styleUrls: ['./members-list.component.css']
+	selector: 'app-members-list',
+	templateUrl: './members-list.component.html',
+	styleUrls: ['./members-list.component.css']
 })
 export class MembersListComponent implements OnInit {
-	loading: boolean = true;
+	loading: boolean = false;
+	maritalStatus: string[] = ["Soltero",
+		"Casado"];
+	status: string = this.maritalStatus[1];
+
+	educations: string[] = ["Secundario",
+		"Terciario",
+		"Universitario"];
+	education: string = this.educations[2];
 
 	// Tabla
 	displayedColumns: string[] = ['name', 'age', 'teams'];
@@ -21,7 +29,15 @@ export class MembersListComponent implements OnInit {
 	constructor(private members: MembersService) { }
 
 	ngOnInit() {
-		this.members.getMembersListBy('Casado', 'Universitario').subscribe(
+		this.getMembersList(this.status, this.education);
+	}
+
+	/**
+	 * getMembersList
+	 */
+	public getMembersList(maritalStatus: string, education: string) {
+		this.loading = true;
+		this.members.getMembersListBy(maritalStatus, education).subscribe(
 			(response: any) => {
 				this.dataSource = new MatTableDataSource<any>(response.data);
 				this.dataSource.paginator = this.paginator;
