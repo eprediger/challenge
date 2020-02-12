@@ -1,6 +1,8 @@
 {
-	"defaultSeverity": "error",
-	"extends": [],
+	"defaultSeverity": "warning",
+	"extends": [
+		"tslint:recommended"
+	],
 	"jsRules": {},
 	"rules": {
 		"trailing-comma": [ false ]

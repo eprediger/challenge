@@ -31,7 +31,7 @@ app.post('/upload-csv', upload.single('file'), (req, res) => {
 			res.send(error);
 		})
 		.on('end', (rowCount: number) => {
-			fs.unlink(`${filePath}`, () => {});
+			fs.unlink(`${filePath}`, () => { });
 			// TODO: refactor borrado directorio cuando termina el svr
 			// fs.rmdir(`${DEST_FOLDER}`, () => {});
 			res.status(200);
@@ -138,12 +138,42 @@ app.get("/members/commonNames/:team", (req, res) => {
 /* Un listado, ordenado de mayor a menor según la cantidad de
 socios, que enumere, junto con cada equipo, el promedio de edad
 de sus socios, la menor edad registrada y la mayor edad registrada. */
-/* app.get("/members/summarize", (req, res) => {
-	const summary: any[] = [];
+app.get("/members/summarize", (req, res) => {
+	let response: any[] = [];
+	const summary: any = {};
+	for (const member of members) {
+		if (!summary[member.memberTeam]) {
+			summary[member.memberTeam] = {
+				totalMembers: 0,
+				age: {
+					average: 0,
+					min: member.memberAge,
+					max: member.memberAge
+				}
+			}
+		}
+		summary[member.memberTeam].totalMembers++;
+		summary[member.memberTeam].age.average += member.memberAge
+		summary[member.memberTeam].age.min = (member.memberAge < summary[member.memberTeam].age.min) ? member.memberAge : summary[member.memberTeam].age.min;
+		summary[member.memberTeam].age.max = (member.memberAge > summary[member.memberTeam].age.max) ? member.memberAge : summary[member.memberTeam].age.max;
+	}
+
+	for (const key in summary) {
+		if (summary.hasOwnProperty(key)) {
+			const element = summary[key];
+			element.age.average = element.age.average / element.totalMembers;
+			element.teamName = key
+			response.push(element);
+		}
+	}
+
+	response = response.sort((a: any, b: any) => {
+		return (a.totalMembers < b.totalMembers) ? 1 : (b.totalMembers < a.totalMembers ? -1 : 0);
+	})
 
 	res.status(200);
-	res.send(summary);
-}); */
+	res.send(response);
+});
 
 // start the Express server
 app.listen(LISTEN_PORT, () => {
