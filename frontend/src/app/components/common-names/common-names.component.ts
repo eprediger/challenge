@@ -2,22 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { MembersService } from 'src/app/services/members.service';
 
 @Component({
-  selector: 'app-common-names',
-  templateUrl: './common-names.component.html',
-  styleUrls: ['./common-names.component.css']
+	selector: 'app-common-names',
+	templateUrl: './common-names.component.html',
+	styleUrls: ['./common-names.component.css']
 })
 export class CommonNamesComponent implements OnInit {
-  commonNames: any[];
+	loading: boolean = true;
+	commonNames: any[];
+	displayedColumns: string[] = ['name', 'count'];
 
-  constructor(private members: MembersService) { }
+	constructor(private members: MembersService) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.getCommonNames("River");
+	}
 
-  getCommonNames(team: string) {
-    this.members.getMostCommonNamesFrom(team).subscribe(
-      (response: any) => {
-        this.commonNames = response;
-      });
-  }
+	getCommonNames(team: string) {
+		this.members.getMostCommonNamesFrom(team).subscribe(
+			(response: any) => {
+				this.commonNames = response;
+			},
+			(err: any) => {
+				console.error(err);
+			},
+			() => {
+				this.loading = false;
+			});
+	}
 }

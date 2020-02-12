@@ -1,12 +1,20 @@
 <app-navbar></app-navbar>
 
-<mat-form-field>
-	<mat-label>Equipo Favorito</mat-label>
-	<mat-select>
-		<mat-option *ngFor="let team of teams" [value]="team" (click)="getTeamMembersAverageAge(team)">
-			{{team}}
-		</mat-option>
-	</mat-select>
-</mat-form-field>
-
-<p>Edad Promedio: {{ averageAge | number:'.2-2':'es-AR'}} años</p>
+<div class="container-fluid text-center" style="background-color: gray;">
+	<div class="row">
+		<div class="offset-3 col-3">
+			<mat-form-field>
+				<mat-label>Equipo Favorito</mat-label>
+				<mat-select [value]="defaultTeam">
+					<mat-option *ngFor="let team of teams" [value]="team" (click)="getTeamMembersAverageAge(team)">
+						{{team}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<div class="col-3 my-auto">
+			<p *ngIf="averageAge">Edad Promedio: {{ averageAge | number:'.2-2':'es-AR'}} años</p>
+		</div>
+	</div>
+</div>
+<app-spinner *ngIf="loading"></app-spinner>

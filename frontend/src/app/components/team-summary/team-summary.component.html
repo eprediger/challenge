@@ -1,3 +1,41 @@
 <app-navbar></app-navbar>
 
-<p>team-summary works!</p>
+<div class="mat-elevation-z8">
+	<table mat-table [dataSource]="dataSource">
+		<!-- Equipo -->
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef> Equipo </th>
+			<td mat-cell *matCellDef="let element"> {{element.teamName}} </td>
+		</ng-container>
+
+		<!-- Socios -->
+		<ng-container matColumnDef="total">
+			<th mat-header-cell *matHeaderCellDef> Socios </th>
+			<td mat-cell *matCellDef="let element"> {{element.totalMembers}} </td>
+		</ng-container>
+
+		<!-- Edad Promedio -->
+		<ng-container matColumnDef="average">
+			<th mat-header-cell *matHeaderCellDef> Edad </th>
+			<td mat-cell *matCellDef="let element"> {{element.age.average | number:'.2-2':'es-AR'}} </td>
+		</ng-container>
+
+		<!-- Mayor Edad -->
+		<ng-container matColumnDef="min">
+			<th mat-header-cell *matHeaderCellDef> Equipo </th>
+			<td mat-cell *matCellDef="let element"> {{element.age.min | number:'.0-0':'es-AR'}} </td>
+		</ng-container>
+
+		<!-- Menor Edad -->
+		<ng-container matColumnDef="max">
+			<th mat-header-cell *matHeaderCellDef> Equipo </th>
+			<td mat-cell *matCellDef="let element"> {{element.age.max | number:'.0-0':'es-AR'}} </td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+	</table>
+
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>

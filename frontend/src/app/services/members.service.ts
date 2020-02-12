@@ -57,8 +57,10 @@ export class MembersService {
 		return this.http.get(url);
 	}
 
-	/* // name
-	public name() {
+	// getMembersSummarize
+	public getMembersSummarize() {
 		const url: string = `${this.endpoint}/members/summarize`;
-	} */
+
+		return this.http.get(url);
+	}
 }
