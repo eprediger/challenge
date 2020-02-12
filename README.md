@@ -9,6 +9,7 @@ Servidor escuchando en puerto 8080
 ### Run:
 
 ```
+$ npm install
 $ npm run start
 ```
 
@@ -19,5 +20,6 @@ Cliente en http://localhost:4200
 ### Run:
 
 ```
+$ npm install
 $ npm run start
 ```
