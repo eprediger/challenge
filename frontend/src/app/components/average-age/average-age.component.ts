@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from 'src/app/services/members.service';
+import Constants from 'src/app/services/Constants';
 
 @Component({
 	selector: 'app-average-age',
@@ -8,18 +9,8 @@ import { MembersService } from 'src/app/services/members.service';
 })
 export class AverageAgeComponent implements OnInit {
 	loading: boolean = false;
-	teams: string[] = ["Boca",
-		"Estudiantes",
-		"Gimnasia LP",
-		"Hurac�n",
-		"Independiente",
-		"Newells",
-		"Racing",
-		"River",
-		"Rosario Central",
-		"San Lorenzo",
-		"Velez"];
-	defaultTeam: string = this.teams[6];
+	teams: string[] = Constants.EQUIPOS;
+	defaultTeam: string = Constants.RACING;
 	averageAge: string = null;
 
 	constructor(private members: MembersService) { }

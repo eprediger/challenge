@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from 'src/app/services/members.service';
+import Constants from 'src/app/services/Constants';
 
 @Component({
 	selector: 'app-common-names',
@@ -9,18 +10,8 @@ import { MembersService } from 'src/app/services/members.service';
 export class CommonNamesComponent implements OnInit {
 	loading: boolean = true;
 	commonNames: any[];
-	teams: string[] = ["Boca",
-		"Estudiantes",
-		"Gimnasia LP",
-		"Hurac�n",
-		"Independiente",
-		"Newells",
-		"Racing",
-		"River",
-		"Rosario Central",
-		"San Lorenzo",
-		"Velez"];
-	initialTeam: string = this.teams[7];
+	teams: string[] = Constants.EQUIPOS;
+	initialTeam: string = Constants.RIVER;
 	displayedColumns: string[] = ['name', 'count'];
 
 	constructor(private members: MembersService) { }

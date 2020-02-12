@@ -4,7 +4,7 @@
 	<div class="row mt-2">
 		<div class="offset-3 col-3 my-auto">
 			<mat-form-field>
-				<mat-label>Equipo Favorito</mat-label>
+				<mat-label>Equipo</mat-label>
 				<mat-select [value]="defaultTeam">
 					<mat-option *ngFor="let team of teams" [value]="team" (click)="getTeamMembersAverageAge(team)">
 						{{team}}

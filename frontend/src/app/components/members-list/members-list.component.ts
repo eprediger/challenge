@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
 import { MembersService } from 'src/app/services/members.service';
+import Constants from 'src/app/services/Constants';
+
 @Component({
 	selector: 'app-members-list',
 	templateUrl: './members-list.component.html',
@@ -10,14 +11,11 @@ import { MembersService } from 'src/app/services/members.service';
 })
 export class MembersListComponent implements OnInit {
 	loading: boolean = false;
-	maritalStatus: string[] = ["Soltero",
-		"Casado"];
-	status: string = this.maritalStatus[1];
+	maritalStatus: string[] = Constants.ESTADO_CIVIL;
+	status: string = Constants.CASADO;
 
-	educations: string[] = ["Secundario",
-		"Terciario",
-		"Universitario"];
-	education: string = this.educations[2];
+	educations: string[] = Constants.EDUCACION;
+	education: string = Constants.UNIVERSITARIO;
 
 	// Tabla
 	displayedColumns: string[] = ['name', 'age', 'teams'];
